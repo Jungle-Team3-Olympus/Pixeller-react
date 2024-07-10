@@ -1,45 +1,44 @@
 import React from "react";
-import { useState } from "react";
-import "./PC.css";
+import "./PD.css";
 
 const ProductDetail = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isRegistOpen, setIsRegistOpen] = useState(false);
-
   return (
-    <>
-      <div className="board-wrapper">
-        <div className="board-container">
-          <div className="img-container">
-            <img src="여기에 이미지 링크" alt="product" />
+    <div className="board-wrapper">
+      <div className="board-container">
+        <div className="img-container">
+          <img
+            src="https://via.placeholder.com/400x300"
+            alt="product"
+          />
+        </div>
+        <div className="product-detail">
+          <div className="product-seller">
+            판매자: <span>seller</span> {/* seller 아이콘이 아직 없으니 수정이 필요 */}
           </div>
-          <div className="product-detail">
-            <div className="product-seller">
-              판매자:
-              <span>seller(여기에 유저 아이콘)</span>
+          <div className="product-container">
+            <div className="product-title">상품 제목</div>
+            <div className="product-price">상품 가격</div>
+            <div className="product-content">
+              상품 설명 Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Etiam auctor eros ac dapibus consectetur.
             </div>
-            <div className="product-container">
-              <div className="product-title">상품 제목</div>
-              <div className="product-price">상품 가격</div>
-              <div className="product-content">상품 설명</div>
-              <div className="product-wantBuyer">
-                구매 요청자 목록
-                <div className="buyer-list">
-                  <ul>
-                    <li>buyer1</li>
-                    <li>buyer2</li>
-                    <li>buyer3</li>
-                  </ul>
-                </div>
+            <div className="product-wantBuyer">
+              구매 요청자 목록
+              <div className="buyer-list">
+                <ul>
+                  <li>buyer1</li>
+                  <li>buyer2</li>
+                  <li>buyer3</li>
+                </ul>
               </div>
-              <div className="product-button">
-                <button className="product-request">구매 요청하기</button>
-              </div>
+            </div>
+            <div className="product-button">
+              <button className="product-request">구매 요청하기</button>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
