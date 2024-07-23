@@ -66,7 +66,6 @@ const GameApp = () => {
     }
 
     handleResize();
-    sendEvent();
 
     // 컴포넌트 언마운트 시 Phaser 게임 정리
     return () => {
@@ -78,18 +77,6 @@ const GameApp = () => {
       }
     };
   }, []);
-
-  const sendEvent = () => {
-    const game = gameRef.current;
-    if (game && game.scene && game.scene.keys["GameScene"]) {
-      console.log("phaser로 이벤트 실행");
-      const myGameScene = game.scene.keys["GameScene"];
-      myGameScene.handleExternalEvenet({
-        type: "test",
-        payload: "test payload",
-      });
-    }
-  };
 
   return (
     <div

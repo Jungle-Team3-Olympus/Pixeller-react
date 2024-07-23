@@ -26,7 +26,7 @@ const getUserList = (socket) => {
 
 class GameScene extends Phaser.Scene {
   constructor() {
-    super({ key: "GameScene" });
+    super();
     this.uid = null;
 
     this.aimLine = null;
@@ -134,8 +134,10 @@ class GameScene extends Phaser.Scene {
         case "move":
           // console.log(data);
           const user = data.user;
-          if (user) {
-            if (user.uid != null && user.uid != undefined) {
+          if(user){
+
+            if (user.uid != null && user.uid != undefined){
+              
               // 움직인 유저 정보만 받아와서 갱신해주기
               if (this.OPlayer[user.uid]) {
                 const otherPlayer = this.OPlayer[user.uid];
@@ -796,8 +798,10 @@ class GameScene extends Phaser.Scene {
       const products = await getAllProducts();
       // console.log('Fetched products:', products);
 
-      const areas = [{ x: 1444, y: 1127, width: 220, height: 160 }];
-
+      const areas = [
+        { x: 1444, y: 1127, width: 220, height: 160 },
+      ];
+      
       if (products.length > 0) {
         this.displayProduct(products, areas[0], 0);
       }
@@ -806,11 +810,12 @@ class GameScene extends Phaser.Scene {
       //     this.displayProduct(products, area, index);
       //   }
       // });
+
     } catch (error) {
       console.error("Failed to load products", error);
     }
   }
-
+  
   displayProduct(products, area, startIndex) {
     let currentIndex = startIndex;
 
@@ -856,25 +861,16 @@ class GameScene extends Phaser.Scene {
 
     this[`productSprite_${x}_${y}`] = this.add.image(x, y, imageKey);
     this[`productSprite_${x}_${y}`].setDisplaySize(width, height);
-
+    
     // 새 상품 정보 텍스트 추가
-    this[`productText_${x}_${y}`] = this.add.text(
-      x,
-      y + height / 2 + 10,
-      `${product.name}\n${product.price}원`,
-      {
-        fontSize: "12px",
-        fill: "#fff",
-        backgroundColor: "#000",
-        padding: { x: 5, y: 5 },
-        resolution: 4,
-      }
-    );
+    this[`productText_${x}_${y}`] = this.add.text(x, y + height/2 + 10, `${product.name}\n${product.price}원`, { 
+      fontSize: '12px', 
+      fill: '#fff',
+      backgroundColor: '#000',
+      padding: { x: 5, y: 5 },
+      resolution: 4
+    });
     this[`productText_${x}_${y}`].setOrigin(0.5, 0);
-  }
-
-  handleExternalEvenet(data) {
-    console.data("External event received", data);
   }
 
   /**
@@ -909,13 +905,13 @@ class GameScene extends Phaser.Scene {
         direction: this.Player.direction,
       };
 
-      if (user.uid != null && user.uid != undefined) {
+      if( user.uid != null && user.uid != undefined ){
         this.Player.oldPosition = { x: this.player.x, y: this.player.y };
         // console.log("move", user);
         this.socket.emit("move", user);
-
+        
         this.lastPositionUpdateTime = time;
-      }
+      } 
     }
 
     // 조준선 표시 / 숨김
