@@ -6,6 +6,8 @@ const NAVBAR_HEIGHT = 64;
 
 const GameApp = () => {
   const canvasRef = useRef(null);
+  const gameRef = useRef(null);
+
   const [gameSize, setGameSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight - NAVBAR_HEIGHT,
@@ -51,6 +53,7 @@ const GameApp = () => {
         },
       };
       window.game = new Phaser.Game(config);
+      gameRef.current = window.game;
     }
 
     // 우클릭 이벤트 방지
@@ -63,6 +66,7 @@ const GameApp = () => {
     }
 
     handleResize();
+    sendEvent();
 
     // 컴포넌트 언마운트 시 Phaser 게임 정리
     return () => {
@@ -74,6 +78,18 @@ const GameApp = () => {
       }
     };
   }, []);
+
+  const sendEvent = () => {
+    const game = gameRef.current;
+    if (game && game.scene && game.scene.keys["GameScene"]) {
+      console.log("phaser로 이벤트 실행");
+      const myGameScene = game.scene.keys["GameScene"];
+      myGameScene.handleExternalEvenet({
+        type: "test",
+        payload: "test payload",
+      });
+    }
+  };
 
   return (
     <div

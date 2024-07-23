@@ -208,7 +208,7 @@ const Auction_new = forwardRef<VideoCanvasHandle, AuctionSellerProps>(
     const [participantName, setParticipantName] = useState(username);
 
     // OpenVidu token 세션 접속 정보
-    const [room, setRoom] = useState<Room | undefined>(undefined); // Room 객체 화상 회의에 대한 정보
+    // const [room, setRoom] = useState<Room | undefined>(undefined); // Room 객체 화상 회의에 대한 정보
     const [localTrack, setLocalTrack] = useState<LocalVideoTrack | undefined>(
       undefined
     ); // LocalVideoTrack 객체는 로컬 사용자의 비디오 트랙을 나타냄
@@ -611,7 +611,7 @@ const Auction_new = forwardRef<VideoCanvasHandle, AuctionSellerProps>(
                   })}
                   <div ref={sysChatEndRef}></div>
                 </div>
-                {/* <CircularProgressBar /> */}
+                <CircularProgressBar />
               </div>
               <div className="auction-new-right-bottom">
                 <div className="auction-new-right-left">
@@ -626,6 +626,7 @@ const Auction_new = forwardRef<VideoCanvasHandle, AuctionSellerProps>(
                         participantId={participantName}
                         local={true}
                       />
+                      <span>{username}</span>
                     </div>
                   )}
                   {remoteTracks.map((remoteTrack, index) => (
