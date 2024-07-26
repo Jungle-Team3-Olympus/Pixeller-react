@@ -133,31 +133,26 @@ const ProductList = ({
                 <div className="product-name">
                   <span>{item.name}</span>
                 </div>
+                
                 <div className="product-price">
-                  <span>{comma3number(item.price)}원</span>
+                    <span>{comma3number ( item.price )}원</span>
                 </div>
               </div>
               <div className="new-product-seller">
-                <span>판매자 : {item.memberDto.id}</span>
+                  <span>판매자 : {item.memberDto.id}</span>
               </div>
               <div className="new-product-DM-div">
-                <div>
-                  <span onClick={dmHandler} data-uid={item.memberDto.memberId}>
-                    판매자에게 DM 보내기
-                  </span>
+                <div onClick={dmHandler} data-uid={item.memberDto.memberId} >
+                  <span>판매자에게 DM 보내기</span>
                 </div>
-                <div
-                  onClick={() => {
-                    handleSetAuctionProduct(item);
-                  }}
-                  data-uid={item.memberDto.memberId}
-                >
+                <div onClick={()=>{handleSetAuctionProduct(item);}} data-uid={item.memberDto.memberId}>
                   <span>경매하러가기</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+          
       ))}
     </>
   );
